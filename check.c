@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rocket <rocket@student.42.fr>              +#+  +:+       +#+        */
+/*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 09:56:42 by rocket            #+#    #+#             */
-/*   Updated: 2024/07/12 05:58:29 by rocket           ###   ########.fr       */
+/*   Updated: 2025/01/03 01:49:03 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_is_sorted(int *tab, size_t size)
 	index = 0;
 	while (index < size - 1) 
 		{
-			if (tab[index] <= tab[index++])
+			if (tab[index] < tab[index+1])
 				return (1);
 			index++;
 		}
