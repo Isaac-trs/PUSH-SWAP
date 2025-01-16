@@ -1,44 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mov1.c                                             :+:      :+:    :+:   */
+/*   mov4.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 01:56:57 by istripol          #+#    #+#             */
-/*   Updated: 2024/10/03 18:41:48y istripol         ###   ########.fr       */
+/*   Created: 2025/01/16 03:11:54 by istripol          #+#    #+#             */
+/*   Updated: 2025/01/16 03:27:45 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    swap(t_stack **node)
+void    pa(t_stack **node_a, t_stack **node_b)
 {
     t_stack *tmp;
-    if (*node == NULL || (*node)->next == NULL)
+
+    if (*node_a == NULL) 
         return;
+        
+    tmp = *node_b;
+    *node_b = (*node_b)->next;
+    tmp->next = *node_a;
+    *node_a = tmp;
 
-    tmp = (*node)->next;
-    (*node)->next = tmp->next;
-    tmp->next = *node;
-    *node = tmp;
+    write(1, "pa\n", 3);
 }
 
-void    sa(t_stack **node_a)
+void    pb(t_stack **node_b, t_stack **node_a)
 {
-    swap(node_a);
-    printf("sa\n");
-}
+    t_stack *tmp;
 
-void    sb(t_stack **node_b)
-{
-    swap(node_b);
-    write(1, "sb\n", 3);
-}
-
-void    ss(t_stack **node_a, t_stack **node_b)
-{
-    swap(node_a);
-    swap(node_b);
-    write(1, "ss\n", 3);
+    if (*node_b == NULL) 
+        return;
+        
+    tmp = *node_a;
+    *node_a = (*node_a)->next;
+    tmp->next = *node_b;
+    *node_b = tmp;
+    
+    write(1, "pb\n", 3);
 }

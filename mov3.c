@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mov2.c                                             :+:      :+:    :+:   */
+/*   mov3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 05:37:08 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/16 03:29:20 by istripol         ###   ########.fr       */
+/*   Created: 2025/01/16 01:27:37 by istripol          #+#    #+#             */
+/*   Updated: 2025/01/16 03:30:13 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    rotate(t_stack **node)
+void    reverse_rotate(t_stack **node)
 {
     t_stack *first;
     t_stack *last;
@@ -21,26 +21,26 @@ void    rotate(t_stack **node)
 
     first = *node;
     last = lstlast(*node);
-    *node  = first->next;
-    first->next = NULL;
-    last->next = first;
+    *node  = last;
+    (*node)->next = first;
+    last->next = NULL;
 }
 
-void    ra(t_stack **node_a)
+void    rra(t_stack **node_a)
 {
-    rotate(node_a);
-    write(1, "ra\n", 3);
+    reverse_rotate(node_a);
+    write(1, "rra\n", 4);
 }
 
-void    rb(t_stack **node_b)
+void    rrb(t_stack **node_b)
 {
-    rotate(node_b);
-    write(1, "rb\n", 3);
+    reverse_rotate(node_b);
+    write(1, "rrb\n", 4);
 }
 
-void   rr(t_stack **node_a, t_stack **node_b)
+void   rrr(t_stack **node_a, t_stack **node_b)
 {
-    rotate(node_a);
-    rotate(node_b);
-    write(1, "rr\n", 3);
+    reverse_rotate(node_a);
+    reverse_rotate(node_b);
+    write(1, "rrr\n",  4);
 }

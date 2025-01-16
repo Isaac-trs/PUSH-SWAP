@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 07:00:21 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/03 07:02:26 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:23:45 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,22 @@ t_stack *lstlast(t_stack *lst)
     return (tmp);
 }
 
+void	lstadd_back(t_stack **lst, t_stack *new)
+{
+	if (!*lst)
+		*lst = new;
+	else
+		lstlast(*lst)->next = new;
+}
+
+t_stack	*lstnew(int value)
+{
+	t_stack	*new;
+
+	new = malloc(sizeof(t_stack));
+	if (!new)
+		return (NULL);
+	new->value = value;
+	new->next = (NULL);
+	return (new);
+}

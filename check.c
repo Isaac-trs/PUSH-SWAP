@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 09:56:42 by rocket            #+#    #+#             */
-/*   Updated: 2025/01/03 01:49:03 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/16 04:22:13 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,18 @@ int	ft_is_uniq(int *tab, size_t size)
 	size_t	j;
 
 	i = 0;
-	while (i < size - 1)
+	while (i < size - 2)
 	{
-		j = 0;
+		j = i + 1;
 		while (j < size - 1)
-		 {
-			if (i == j)
-				j++;
+		{
 			if (tab[i] == tab[j])
 				return (0);
 			j++;
 		}
 		i++;
 	}
-	
+	return (1);
 }
 
 int	ft_is_sorted(int *tab, size_t size)
@@ -39,18 +37,18 @@ int	ft_is_sorted(int *tab, size_t size)
 	int	index;
 	
 	index = 0;
-	while (index < size - 1) 
+	while (index < size - 2) 
 		{
-			if (tab[index] < tab[index+1])
-				return (1);
+			if (tab[index] > tab[index+1])
+				return (0);
 			index++;
 		}
-	return (0);
+	return (1);
 }
 
-int ft_is_number(char *str)
+static int ft_is_number(char *str)
 {
-	if (*str == '-' || ft_isdigit(*str))
+	if (*str == '-' || *str == '+')
 		str++;
 	while(*str)
 	{
@@ -71,9 +69,8 @@ int 	ft_check_args(char **tab)
 	while (tab[index])
 	{
 		if (!ft_is_number(tab[index]))
-				//write(2, "ERROR\n", 6);
-				//exit();
-				return (0);
+			//write(2, "ERROR\n", 6);
+			return (0);
 		index++;
 	}
 	return (1);
