@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 03:11:54 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/16 03:27:45 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/16 04:35:07 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ void    pa(t_stack **node_a, t_stack **node_b)
     *node_b = (*node_b)->next;
     tmp->next = *node_a;
     *node_a = tmp;
-
     write(1, "pa\n", 3);
 }
 
-void    pb(t_stack **node_b, t_stack **node_a)
+void    pb(t_stack **node_a, t_stack **node_b)
 {
     t_stack *tmp;
 
@@ -38,6 +37,5 @@ void    pb(t_stack **node_b, t_stack **node_a)
     *node_a = (*node_a)->next;
     tmp->next = *node_b;
     *node_b = tmp;
-    
     write(1, "pb\n", 3);
 }
