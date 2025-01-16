@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:30:27 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/16 04:35:23 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/16 04:36:27 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	sa(t_stack **node);
 void	sb(t_stack **node);
 void	ss(t_stack **node_a, t_stack **node_b);
 void	pa(t_stack **node_a, t_stack **node_b);
-void	pb(t_stack **node_a, t_stack **node_b;
+void	pb(t_stack **node_a, t_stack **node_b);
 void	ra(t_stack **node_a);	
 void	rb(t_stack **node_b);	
 void	rr(t_stack **node_a, t_stack **node_b);
