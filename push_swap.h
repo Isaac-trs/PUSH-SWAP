@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:30:27 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/16 04:36:27 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:22:13 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int		ft_is_uniq(int *tab, size_t size);
 int		ft_is_sorted(int *tab, size_t size);
 int		ft_check_args(char **tab);
 
-int		*init_int_tab(char **char_tab, int size, int *int_tab);
-t_stack *ft_init_stack(int *tab);
+int		init_int_tab(char **char_tab, int size, int **int_tab);
+t_stack *ft_init_stack(int *tab, int size);
+
+void   sort_3(t_stack **node_a);
 
 void	sa(t_stack **node);
 void	sb(t_stack **node);
@@ -44,7 +46,7 @@ void	pb(t_stack **node_a, t_stack **node_b);
 void	ra(t_stack **node_a);	
 void	rb(t_stack **node_b);	
 void	rr(t_stack **node_a, t_stack **node_b);
-void	rra(t_stack **node);
+void	rra(t_stack **node_a);
 void	rrb(t_stack **node);
 void	rrr(t_stack **node_a, t_stack **node_b);
 

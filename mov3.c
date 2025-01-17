@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 01:27:37 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/16 03:30:13 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/16 19:26:40 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@ void    reverse_rotate(t_stack **node)
 {
     t_stack *first;
     t_stack *last;
+    t_stack *tmp;
+
     if (*node == NULL || (*node)->next == NULL)
             return;
-
+            
     first = *node;
+    while (first->next->next)
+        first = first->next;
     last = lstlast(*node);
-    *node  = last;
-    (*node)->next = first;
-    last->next = NULL;
+    last->next = (*node);
+    (*node) = last;
+    first->next = NULL;
 }
 
 void    rra(t_stack **node_a)
