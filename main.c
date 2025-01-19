@@ -64,9 +64,28 @@ void	sort_int_tab(int *tab, int size)
 	}
 }
 
-int	get_mediane(int *tab, int size)
+int	get_mediane(t_stack *lst)
 {
-	if (size % 2 == 0)
+	t_stack *tmp;
+	size_t	size;
+	size_t	i;
+	int	*tab;
+	int mediane;
+
+	i = 0;
+	tmp = lst;
+	size = lstsize(lst);
+	tab = malloc(sizeof(int) * size);
+	while (tmp)
+	{
+		tab[i] = tmp->value;
+		i++;
+		tmp = tmp->next;
+	}
+	sort_int_tab(tab, size);
+	mediane = tab[size / 2];
+	free(tab);
+	return (mediane);
 }
 
 t_stack	*ft_init_stack(int *tab, int size)
@@ -89,7 +108,7 @@ void	print_stack(const t_stack *stack)
 {
 	while (stack)
 	{
-		printf("%d\n", stack->value);
+		printf("%d -> \n", stack->value);
 		stack = stack->next;
 	}
 }
