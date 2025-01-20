@@ -21,19 +21,20 @@ void ft_swap(int *a, int *b)
 	*a = tmp;
 }
 
-int	init_int_tab(char **char_tab, int ac, int **int_tab)
+int *init_int_tab(char **char_tab, int ac)
 {
 	int i;
 	int size;
+	int *int_tab;
 
 	i = 0;	
 	size = 0;
 	while (char_tab[size])
 		size++;
-	*int_tab = malloc(sizeof(int) * size);
+	int_tab = malloc(sizeof(int) * size);
 	while (char_tab[i])
 	{
-		(*int_tab)[i] = ft_atoi(char_tab[i]);
+		int_tab[i] = ft_atoi(char_tab[i]);
 		i++;
 	}
 	if (ac == 2)
@@ -43,7 +44,7 @@ int	init_int_tab(char **char_tab, int ac, int **int_tab)
 			free(char_tab[i++]);
 		free(char_tab);
 	}
-	return (size);
+	return (int_tab);
 }
 
 void	sort_int_tab(int *tab, int size)
@@ -90,7 +91,7 @@ int	get_mediane(t_stack *lst)
 
 t_stack	*ft_init_stack(int *tab, int size)
 {
-	t_stack *ret;
+	t_stack *ret = NULL;
 	t_stack *buf;
 	int i;
 
@@ -108,13 +109,15 @@ void	print_stack(const t_stack *stack)
 {
 	while (stack)
 	{
-		printf("%d -> \n", stack->value);
+		printf("%d -> ", stack->value);
 		stack = stack->next;
+		if (!stack)
+			printf("\n");
 	}
 }
 
 
-void print_tab(int *tab, size_t size)
+void print_tab(const int *tab, size_t size)
 {
 	int i = 0;
 
@@ -129,33 +132,36 @@ void print_tab(int *tab, size_t size)
 
 int	main(int ac, char **av)
 {
+	int j = 0;
 	t_stack *stack_a;
 	t_stack *stack_b;
 	int *int_tab;
 	char **char_tab;
-	int size;
-
-	//stack_a = ft_init_stack((int []){1, 3, 2},3);
+	
+	int size =  ac -1;
+	char *string[5] = {"10", "20", "-30", "-99", "0"};
+	while (string[j])
+		printf("%s, ", string[j++]);
+	printf("\n");
+//	stack_a = ft_init_stack((int []){1, 3, 2},3);
 	//print_stack(stack_a);
 	//sort_3(& stack_a);
 	//print_stack(stack_a);
-	int_tab  = malloc(sizeof(int) * 64);
+	int_tab = init_int_tab(&(av[1]), ac);
 	int i = 0;
 
-	while (i < 64)
-	{
-		int_tab[i] = 99 - i;
-		i++;
-	}
-	print_tab(int_tab, 64);
-	sort_int_tab(int_tab, 64);
-	print_tab(int_tab, 64);
+	print_tab(int_tab, size);
+	sort_int_tab(int_tab, size);
+	print_tab(int_tab, size);
+	//free(int_tab);
+	printf("\n");
 
+	t_stack	*test;
+	printf("sizeof int_tab = %i\n", sizeof(int_tab));
+	test = ft_init_stack(int_tab, size);
+	print_stack(test);
+	printf("%i", size);
 	return 0;
-
-
-
-
 
 
 	if (ac <= 1)
@@ -169,12 +175,13 @@ int	main(int ac, char **av)
 			return (0);
 		else
 		{
-			size = init_int_tab(char_tab, ac, & int_tab);
+			init_int_tab(char_tab, ac);
 			if (ft_is_uniq(int_tab, size) && !ft_is_sorted(int_tab, size))
 				stack_a = ft_init_stack(int_tab, size);			
 			else
 				return (0);
 		}
+		print_stack(stack_a);
 
 	}
 }
