@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 04:37:44 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/16 20:30:15 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/21 02:55:59 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void   sort_3(t_stack **node_a)
         rra(node_a);
         sa(node_a);
     }
-    else if (a > b && a < c) 
+    else if (a > b && a < c)
         sa(node_a);
     else if (a < b && a > c)
         rra(node_a);

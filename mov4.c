@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 03:11:54 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/16 04:35:07 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/21 00:26:39 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void    pa(t_stack **node_a, t_stack **node_b)
 {
     t_stack *tmp;
 
-    if (*node_a == NULL) 
+    if (*node_b == NULL) 
         return;
         
     tmp = *node_b;
@@ -30,7 +30,7 @@ void    pb(t_stack **node_a, t_stack **node_b)
 {
     t_stack *tmp;
 
-    if (*node_b == NULL) 
+    if (*node_a == NULL) 
         return;
         
     tmp = *node_a;

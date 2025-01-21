@@ -21,7 +21,7 @@ void ft_swap(int *a, int *b)
 	*a = tmp;
 }
 
-int *init_int_tab(char **char_tab, int ac)
+int *init_int_tab(char **char_tab, int ac, int *sz)
 {
 	int i;
 	int size;
@@ -44,6 +44,7 @@ int *init_int_tab(char **char_tab, int ac)
 			free(char_tab[i++]);
 		free(char_tab);
 	}
+	*sz = size;
 	return (int_tab);
 }
 
@@ -84,7 +85,10 @@ int	get_mediane(t_stack *lst)
 		tmp = tmp->next;
 	}
 	sort_int_tab(tab, size);
+	print_tab(tab, size);
 	mediane = tab[size / 2];
+	if (size == 4)
+		mediane = tab[1];
 	free(tab);
 	return (mediane);
 }
@@ -116,72 +120,84 @@ void	print_stack(const t_stack *stack)
 	}
 }
 
-
-void print_tab(const int *tab, size_t size)
+void	print_tab(const int *tab, size_t size)
 {
 	int i = 0;
 
-	printf("[ ");
+	printf("[");
 	while ( i < size)
 	{
-		printf("%i, ", tab[i]);
+		printf(" %i,", tab[i]);
 		i++;
 	}
-	printf(" ]");
+	printf("]\n");
 }
 
-int	main(int ac, char **av)
+void	free_stack(t_stack **stack)
 {
-	int j = 0;
-	t_stack *stack_a;
-	t_stack *stack_b;
-	int *int_tab;
-	char **char_tab;
-	
-	int size =  ac -1;
-	char *string[5] = {"10", "20", "-30", "-99", "0"};
-	while (string[j])
-		printf("%s, ", string[j++]);
-	printf("\n");
-//	stack_a = ft_init_stack((int []){1, 3, 2},3);
-	//print_stack(stack_a);
-	//sort_3(& stack_a);
-	//print_stack(stack_a);
-	int_tab = init_int_tab(&(av[1]), ac);
-	int i = 0;
+	t_stack *buf;
+	t_stack *tmp;
 
-	print_tab(int_tab, size);
-	sort_int_tab(int_tab, size);
-	print_tab(int_tab, size);
-	//free(int_tab);
-	printf("\n");
-
-	t_stack	*test;
-	printf("sizeof int_tab = %i\n", sizeof(int_tab));
-	test = ft_init_stack(int_tab, size);
-	print_stack(test);
-	printf("%i", size);
-	return 0;
-
-
-	if (ac <= 1)
-		return (0);
-	else
+	tmp = *stack;
+	while (tmp)
 	{
-		char_tab = &(av[1]);
-		if (ac == 2)
-			char_tab = ft_split(av[1], ' ');
-		if (!ft_check_args(char_tab))
-			return (0);
-		else
-		{
-			init_int_tab(char_tab, ac);
-			if (ft_is_uniq(int_tab, size) && !ft_is_sorted(int_tab, size))
-				stack_a = ft_init_stack(int_tab, size);			
-			else
-				return (0);
-		}
-		print_stack(stack_a);
-
+		buf = tmp;
+		tmp = tmp->next;
+		free(buf);
 	}
 }
+
+// int	main(int ac, char **av)
+// {
+// 	int j = 0;
+// 	t_stack *stack_a;
+// 	t_stack *stack_b;
+// 	int *int_tab;
+// 	char **char_tab;
+	
+// 	int size ;
+// 	//char *string[5] = {"10", "20", "-30", "-99", "0"};
+// 	//while (string[j])
+// 	//	printf("%s, ", string[j++]);
+// //	printf("\n");
+// //	stack_a = ft_init_stack((int []){1, 3, 2},3);
+// 	//print_stack(stack_a);
+// 	//sort_3(& stack_a);
+// 	//print_stack(stack_a);
+// 	int i = 0;
+
+// 	print_tab(int_tab, size);
+// 	sort_int_tab(int_tab, size);
+// 	print_tab(int_tab, size);
+// 	//free(int_tab);
+// 	printf("\n");
+
+// 	t_stack	*test;
+// 	printf("sizeof int_tab = %i\n", sizeof(int_tab));
+// 	test = ft_init_stack(int_tab, size);
+// 	print_stack(test);
+// 	printf("%i", size);
+// 	return 0;
+
+
+// 	if (ac <= 1)
+// 		return (0);
+// 	else
+// 	{
+// 		char_tab = &(av[1]);
+// 		if (ac == 2)
+// 			char_tab = ft_split(av[1], ' ');
+// 		if (!ft_check_args(char_tab))
+// 			return (0);
+// 		else
+// 		{
+// 			init_int_tab(char_tab, ac, &size);
+// 			if (ft_is_uniq(int_tab, size) && !ft_is_sorted(int_tab, size))
+// 				stack_a = ft_init_stack(int_tab, size);			
+// 			else
+// 				return (0);
+// 		}
+// 		print_stack(stack_a);
+
+// 	}
+// }

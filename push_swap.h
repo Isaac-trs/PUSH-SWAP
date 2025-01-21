@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:30:27 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/20 21:47:37 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/21 00:35:56 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,19 @@ t_stack	*lstlast(t_stack *lst);
 t_stack	*lstnew(int value);
 
 
-int		ft_is_uniq(int *tab, size_t size);
-int		ft_is_sorted(int *tab, size_t size);
-int		ft_check_args(char **tab);
+int	ft_is_uniq(int *tab, size_t size);
+int	ft_is_sorted(int *tab, size_t size);
+int	ft_check_args(char **tab);
+int	get_mediane(t_stack *lst);
 
-int		*init_int_tab(char **char_tab, int ac);
+int		*init_int_tab(char **char_tab, int ac, int *sz);
 t_stack *ft_init_stack(int *tab, int size);
 
-void   sort_3(t_stack **node_a);
+
+void	print_tab(const int *tab, size_t size);
+void	print_stack(const t_stack *stack);
+void	free_stack(t_stack **stack);
+void 	sort_3(t_stack **node_a);
 
 void	sa(t_stack **node);
 void	sb(t_stack **node);
