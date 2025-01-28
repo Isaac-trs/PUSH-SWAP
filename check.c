@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 09:56:42 by rocket            #+#    #+#             */
-/*   Updated: 2025/01/16 04:22:13 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:13:43 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int ft_is_number(char *str)
 	return (1);
 }
 
-int 	ft_check_args(char **tab)
+int 	check_args(char **tab)
 {
 	// Args are all numbers
 	size_t index;

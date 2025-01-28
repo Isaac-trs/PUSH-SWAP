@@ -6,15 +6,15 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 03:11:54 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/21 00:26:39 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:21:46 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    pa(t_stack **node_a, t_stack **node_b)
+void	pa(t_stack **node_a, t_stack **node_b)
 {
-    t_stack *tmp;
+    t_stack	*tmp;
 
     if (*node_b == NULL) 
         return;
@@ -26,9 +26,9 @@ void    pa(t_stack **node_a, t_stack **node_b)
     write(1, "pa\n", 3);
 }
 
-void    pb(t_stack **node_a, t_stack **node_b)
+void	pb(t_stack **node_a, t_stack **node_b)
 {
-    t_stack *tmp;
+    t_stack	*tmp;
 
     if (*node_a == NULL) 
         return;

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_stack	*find_daron(t_stack **node_b, t_stack *stack_a)
+void	find_daron(t_stack **node_b, t_stack *stack_a)
 {
     t_stack *daron1;
     t_stack *daron2;
@@ -23,67 +23,125 @@ t_stack	*find_daron(t_stack **node_b, t_stack *stack_a)
     daron1 = NULL;
     while (stack_a != NULL)
     { 
-        if ((*node_b)->value < stack_a->value\
-			&& stack_a->value > daron1->value)
+		if ((*node_b)->value < stack_a->value && !daron1)
+			daron1 = stack_a;
+        else if ((*node_b)->value < stack_a->value && stack_a->value < daron1->value)
 			daron1 = stack_a;
 		stack_a = stack_a->next;
     }
 	if (!daron1)
 		(*node_b)->daron_index = -1;
 	else
+	{
 		(*node_b)->daron = daron1;
 		(*node_b)->daron_index = (*node_b)->daron->index;
+	}
+	
 	// SHOULD RETURN -1 IF NO DARON FOUND
 	// PA + RA
-	return (daron1);
+	// return (daron1);
 }
 
-int	cost_to_daron(t_stack **node_b, int size_a, int size_b)
+void	cost_to_daron(t_stack **node_b, int size_a, int size_b)
 {
 	int a_cost;
 	int	b_cost;
 	int	total;
-
-	if ((*node_b)->daron->index > size_a / 2)
+	int pos = 1;
+	if ((*node_b)->daron->next == NULL)
+		a_cost = 0;
+	else if ((*node_b)->daron->index > size_a / 2)
 		a_cost = size_a - (*node_b)->daron->index;
 	else
 		a_cost = (*node_b)->daron->index;
-	if (((*node_b)->index > size_b / 2))
+	if ((*node_b)->index == 0)
+		b_cost = 0;
+	else if (((*node_b)->index > size_b / 2))
 		b_cost = size_b - (*node_b)->index;
 	else
 		b_cost = (*node_b)->index;
-	total = a_cost + b_cost;
-	(*node_b)->cost = total + 1;
+	total = a_cost + b_cost + 1;
+	if (total < 0)
+		pos *= -1;
+	total *= pos;
+	// total = ((total < 0) * -1 * total) + ((total > 0) * 1 * total) ; 
+	(*node_b)->cost = total;
+	(*node_b)->cost_a = a_cost;
+	(*node_b)->cost_b = b_cost;
+
 	// +1 cause we ALWAYS have to perform a PB;
-	return (a_cost + b_cost + 1);
+	//return (total + 1);
 }
 
-int	apply_daron(t_stack **node_b, t_stack **stack_a, int *size_a, int *size_b)
+int	apply_daron(t_stack **node_b, t_stack **stack_b, t_stack **stack_a, int *size_a, int *size_b)
 {
-	int	i;
+	int	i = 0;
 	
+	int j = 0;
+//	int cpt_rrb = 0;
+//	int cpt_rb = 0;
+//	int cpt_rra = 0;
+//	int cpt_ra = 0;
 	if ((*node_b)->daron_index == -1)
-	{
-		pa(stack_a, node_b);
-		ra(stack_a);	
-	}
-	else if ((*node_b)->daron_index == size_a - 1)
+		pa(stack_a, stack_b);
+		//ra(stack_a);	
+	else if ((*node_b)->daron && (*node_b)->daron->next == NULL)
 	{
 		rra(stack_a);
-		pa(stack_a, node_b);
-		//ra(stack_a);
-		//ra(stack_a);
+		//j = (*node_b)->index;
+		while (j++ < (*node_b)->cost_b)
+		{
+			if ((*node_b)->index > *size_b / 2)
+				rrb(stack_b);
+			else
+				rb(stack_b);
+		}
+		pa(stack_a, stack_b);
+		// ra(stack_a);
+		// ra(stack_a);
 	}
 	else
 	{
-		i = 0;
-		while ((*node_b)->daron->index > i++)
-			ra(stack_a);
-		pa(stack_a, node_b);
+		// if ((*node_b)->index > *size_b / 2)
+		// 	cpt_rrb = *size_b - ((*node_b)->index);
+		// else
+		// 	cpt_rb = (*node_b)->index;
+		// //j = (*node_b)->index;
+
+		// while (cpt_rrb--)
+		// 	rrb(stack_b);
+		// while (cpt_rb--)
+		// 	rb(stack_b);
+
+		// if ((*node_b)->daron->index > *size_a / 2)
+		// 	cpt_rra = *size_a - ((*node_b)->daron->index);
+		// else
+		// 	cpt_ra = (*node_b)->daron->index;
+
+		// while (cpt_rra--)
+		// 	rra(stack_a);
+		// while (cpt_ra--)
+		// 	ra(stack_a);
+		while (i++ < (*node_b)->cost_a)	
+		{
+			if ((*node_b)->daron->index > *size_a / 2)
+				rra(stack_a);
+			else
+				ra(stack_a);
+		}
+		while (j++ < (*node_b)->cost_b)
+		{
+			if ((*node_b)->index > *size_b / 2)
+				rrb(stack_b);
+			else
+				rb(stack_b);
+		}
+		pa(stack_a, stack_b);
 	}
-	*size_a++;
-	*size_b--;
-	set_and_reset(node_b, stack_a);
+	(*size_b)--;
+	(*size_a)++;
+	printf("sza %d\n", *size_a);
+	//set_and_reset(node_b, stack_a);
 }
 
 void	set_and_reset(t_stack **stack_a, t_stack **stack_b)
@@ -92,24 +150,29 @@ void	set_and_reset(t_stack **stack_a, t_stack **stack_b)
 	t_stack	*tmp;
 	int	i;
 
+//	tmp = NULL;
 	i = 0;
 	tmp = *stack_a;
-	while (tmp)
+	while (tmp != NULL)
 	{
 		tmp->index = i++;
 		tmp->cost = 0;
 		tmp->daron_index = 0;
 		tmp->daron = NULL;
+		tmp->cost_a = 0;
+		tmp->cost_b = 0;
 		tmp = tmp->next;
 	}
 	i = 0;
 	tmp = *stack_b;
-	while (tmp)
+	while (tmp != NULL)
 	{
 		tmp->index = i++;
 		tmp->cost = 0;
 		tmp->daron_index = 0;
 		tmp->daron = NULL;
+		tmp->cost_a = 0;
+		tmp->cost_b = 0;
 		tmp = tmp->next;
 	}
 }

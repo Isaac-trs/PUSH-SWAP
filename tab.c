@@ -87,7 +87,6 @@ int	get_mediane(t_stack *lst)
 		tmp = tmp->next;
 	}
 	sort_int_tab(tab, size);
-	print_tab(tab, size);
 	mediane = tab[size / 2];
 	if (size == 4)
 		mediane = tab[1];

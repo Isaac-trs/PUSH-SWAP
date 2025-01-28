@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:30:27 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/27 18:20:06 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/28 03:41:50 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct s_stack
 {
 	int		value;
 	int		cost;
+	int		cost_a;
+	int		cost_b;
 	int		index;
 	int		daron_index;
 	struct s_stack *daron;
@@ -43,11 +45,10 @@ void	free_stack(t_stack **stack);
 void	print_stack(const t_stack *stack);
 
 // daron.c
-t_stack	*find_daron(t_stack **node_b, t_stack *stack_a);
+void	find_daron(t_stack **node_b, t_stack *stack_a);
 void	set_and_reset(t_stack **stack_a, t_stack **stack_b);
-int		cost_to_daron(t_stack **node_b, int size_a, int size_b);
-int		apply_daron(t_stack **node_b, t_stack **stack_a, int *size_a, int *size_b);
-int		apply_daron(t_stack **node_b, t_stack **stack_a, int *size_a, int *size_b);
+void		cost_to_daron(t_stack **node_b, int size_a, int size_b);
+int		apply_daron(t_stack **node_b, t_stack **stack_b, t_stack  **stack_a, int *size_a, int *size_b);
 
 
 // tab.c
