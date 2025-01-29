@@ -1,44 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mov1.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 01:56:57 by istripol          #+#    #+#             */
-/*   Updated: 2024/10/03 18:41:48y istripol         ###   ########.fr       */
+/*   Created: 2025/01/28 07:54:58 by istripol          #+#    #+#             */
+/*   Updated: 2025/01/28 08:17:54 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	swap(t_stack **node)
+int main(int ac, char **av)
 {
-	t_stack *tmp;
-	if (*node == NULL || (*node)->next == NULL)
-		return;
-
-	tmp = (*node)->next;
-	(*node)->next = tmp->next;
-	tmp->next = *node;
-	*node = tmp;
+    printf("comparing %i", ft_is_number(av[1]));
+    // printf("\ncomparing with MAXINT %i", ft_strncmp(av[1], "2147483647", ft_strlen(av[1])));
+   return 0;
 }
 
-void	sa(t_stack **node_a)
-{
-	swap(node_a);
-	write(1, "sa\n", 3);
-}
-
-void	sb(t_stack **node_b)
-{
-	swap(node_b);
-	write(1, "sb\n", 3);
-}
-
-void	ss(t_stack **node_a, t_stack **node_b)
-{
-	swap(node_a);
-	swap(node_b);
-	write(1, "ss\n", 3);
-}
