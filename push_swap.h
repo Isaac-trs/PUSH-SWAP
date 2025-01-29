@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:30:27 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/29 21:50:49 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/29 22:01:59 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		lstsize(t_stack *lst);
 t_stack	*ft_init_stack(int *tab, int size);
 void	free_stack(t_stack **stack);
 void	print_stack(const t_stack *stack);
-void	cost_and_apply(t_stack **sb, t_stack **sa, int *size_a, int *size_b);
+void	cost_and_apply(t_push_swap **push_swap, t_stack **sb, t_stack **sa);
 //void	cost_and_apply(t_stack **sb, t_stack **sa, t_push_swap **push_swap);
 
 // daron.c

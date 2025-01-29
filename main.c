@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 07:54:58 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/29 21:51:21 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/29 22:02:13 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int main(int ac, char **av)
     
 	// algo
     while (push_swap->size_b > 0)
-        cost_and_apply(&push_swap->stack_b, &push_swap->stack_a, &push_swap->size_a, &push_swap->size_b);
+        cost_and_apply(&push_swap, &push_swap->stack_b, &push_swap->stack_a);
 	i = 0;
 	ptr = push_swap->stack_a;
     while (ptr->value < ptr->next->value)

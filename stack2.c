@@ -58,38 +58,28 @@ void	print_stack(const t_stack *stack)
 	}
 }
 
-void	cost_and_apply(t_stack **sb, t_stack **sa, int *size_a, int *size_b)
+void	cost_and_apply(t_push_swap **push_swap, t_stack **sb, t_stack **sa)
 {
 	t_stack *to_apply;
 	t_stack *tmp;
 	int		cost_daron;
 
-	// if (*sb == NULL)
-	// {
-	// 	return ;
-	// }
-	// printf("size a %d\n", *size_a);
-	// printf("size b %d\n", *size_b);
 	to_apply = (*sb);
 	find_daron(&to_apply, *sa);
-
-	cost_to_daron(&to_apply, *size_a, *size_b);
-	//set_and_reset(sa, sb);
+	cost_to_daron(&to_apply, (*push_swap)->size_a, (*push_swap)->size_b);
 	tmp = (*sb);
 	while (tmp)
 	{
 		find_daron(&tmp, *sa);
-		cost_to_daron(&tmp, *size_a, *size_b);
+		cost_to_daron(&tmp, (*push_swap)->size_a, (*push_swap)->size_b);
 		if (tmp->cost < to_apply->cost)
 		{
 			to_apply = tmp;
-			cost_to_daron(&to_apply, *size_a, *size_b);
-			// cost_to_daron(&to_apply, *size_a, *size_b);
+			cost_to_daron(&to_apply, (*push_swap)->size_a, (*push_swap)->size_b);
 		}
 		tmp = tmp->next;
 	}
-	// print_node(&to_apply);
-	apply_daron(&to_apply, sb, sa, size_a, size_b);
+	apply_daron(&to_apply, sb, sa, &(*push_swap)->size_a, &(*push_swap)->size_b);
 	set_and_reset(sa);
 	set_and_reset(sb);
 }
