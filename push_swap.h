@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:30:27 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/28 03:41:50 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:50:49 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 # define PUSH_SWAP_H
 # include "./libft/libft.h"
 # include <stdio.h>
+# include <limits.h>
 
 # ifndef MALLOC_ERROR
 # define MALLOC_ERROR NULL
 # endif
+
 
 typedef struct s_stack
 {
@@ -32,6 +34,17 @@ typedef struct s_stack
 	
 } t_stack;
 
+typedef struct s_push_swap
+{
+	t_stack *stack_a;
+	t_stack *stack_b;
+	int		*int_tab;
+	int		size_tab;
+	int		size_a;
+	int		size_b;
+		
+} t_push_swap;
+
 // stack.c
 t_stack	*lstlast(t_stack *lst);
 t_stack	*lstnew(int value);
@@ -43,12 +56,15 @@ int		lstsize(t_stack *lst);
 t_stack	*ft_init_stack(int *tab, int size);
 void	free_stack(t_stack **stack);
 void	print_stack(const t_stack *stack);
+void	cost_and_apply(t_stack **sb, t_stack **sa, int *size_a, int *size_b);
+//void	cost_and_apply(t_stack **sb, t_stack **sa, t_push_swap **push_swap);
 
 // daron.c
 void	find_daron(t_stack **node_b, t_stack *stack_a);
-void	set_and_reset(t_stack **stack_a, t_stack **stack_b);
-void		cost_to_daron(t_stack **node_b, int size_a, int size_b);
+void	set_and_reset(t_stack **stack);
+void	cost_to_daron(t_stack **node_b, int size_a, int size_b);
 int		apply_daron(t_stack **node_b, t_stack **stack_b, t_stack  **stack_a, int *size_a, int *size_b);
+//int	apply_daron(t_stack **node_b, t_stack **stack_b, t_stack **stack_a, t_push_swap **push_swap);
 
 
 // tab.c
@@ -62,11 +78,12 @@ void	print_tab(const int *tab, size_t size);
 int		ft_is_uniq(int *tab, size_t size);
 int		ft_is_sorted(int *tab, size_t size);
 int		check_args(char **tab);
+int 	ft_is_number(const char *str);
 
 // sort.c
 void	sort_2(t_stack **node_a);
-void	sort(t_stack **node_a, t_stack **node_b);
-void	sort_3(t_stack **node_a);
+void	push_and_sort(t_push_swap **t_push_swap, t_stack **stack_a, t_stack **stack_b);
+void	sort_3(t_stack **stack_a);
 
 // mov1.c
 void	sa(t_stack **node);

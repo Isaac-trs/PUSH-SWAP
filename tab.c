@@ -21,7 +21,7 @@ void ft_swap(int *a, int *b)
 	*a = tmp;
 }
 
-int *init_int_tab(char **char_tab, int ac, int *sz)
+int	*init_int_tab(char **char_tab, int ac, int *sz)
 {
 	int i;
 	int size;
@@ -31,8 +31,7 @@ int *init_int_tab(char **char_tab, int ac, int *sz)
 	size = 0;
 	while (char_tab[size])
 		size++;
-	int_tab = malloc(sizeof(int) * size);
-	if (!int_tab)
+	if ((int_tab = malloc(sizeof(int) * size)) == NULL)
 		return (MALLOC_ERROR);
 	while (char_tab[i])
 	{
@@ -41,9 +40,9 @@ int *init_int_tab(char **char_tab, int ac, int *sz)
 	}
 	if (ac == 2)
 	{
-		i = 0;
+		//i = 0;
 		while (char_tab[i])
-			free(char_tab[i++]);
+			free(char_tab[i--]);
 		free(char_tab);
 	}
 	*sz = size;
@@ -83,14 +82,12 @@ int	get_mediane(t_stack *lst)
 	tab = malloc(sizeof(int) * size);
 	while (tmp)
 	{
-		tab[i] = tmp->value;
-		i++;
+		tab[i++] = tmp->value;
 		tmp = tmp->next;
+		//i++;
 	}
 	sort_int_tab(tab, size);
-	//  sorted_tab[((pushswap->heada->size / 7) * 2)];
-	test = (size / 4) * 2;
-	mediane = tab[test];
+	mediane = tab[(size / 4) *2];
 	if (size == 4)
 		mediane = tab[1];
 	free(tab);
@@ -109,60 +106,3 @@ void	print_tab(const int *tab, size_t size)
 	}
 	printf("]\n");
 }
-
-
-
-// int	main(int ac, char **av)
-// {
-// 	int j = 0;
-// 	t_stack *stack_a;
-// 	t_stack *stack_b;
-// 	int *int_tab;
-// 	char **char_tab;
-	
-// 	int size ;
-// 	//char *string[5] = {"10", "20", "-30", "-99", "0"};
-// 	//while (string[j])
-// 	//	printf("%s, ", string[j++]);
-// //	printf("\n");
-// //	stack_a = ft_init_stack((int []){1, 3, 2},3);
-// 	//print_stack(stack_a);
-// 	//sort_3(& stack_a);
-// 	//print_stack(stack_a);
-// 	int i = 0;
-
-// 	print_tab(int_tab, size);
-// 	sort_int_tab(int_tab, size);
-// 	print_tab(int_tab, size);
-// 	//free(int_tab);
-// 	printf("\n");
-
-// 	t_stack	*test;
-// 	printf("sizeof int_tab = %i\n", sizeof(int_tab));
-// 	test = ft_init_stack(int_tab, size);
-// 	print_stack(test);
-// 	printf("%i", size);
-// 	return 0;
-
-
-// 	if (ac <= 1)
-// 		return (0);
-// 	else
-// 	{
-// 		char_tab = &(av[1]);
-// 		if (ac == 2)
-// 			char_tab = ft_split(av[1], ' ');
-// 		if (!ft_check_args(char_tab))
-// 			return (0);
-// 		else
-// 		{
-// 			init_int_tab(char_tab, ac, &size);
-// 			if (ft_is_uniq(int_tab, size) && !ft_is_sorted(int_tab, size))
-// 				stack_a = ft_init_stack(int_tab, size);			
-// 			else
-// 				return (0);
-// 		}
-// 		print_stack(stack_a);
-
-// 	}
-// }

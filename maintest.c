@@ -56,11 +56,14 @@ int	main(int ac, char **av)
 	t_stack *stack_a = NULL;
 	t_stack *stack_b = NULL;
 	
-	if (!check_args(av+1))
-	{
-		printf("Erro\n");
-		return 1;
-	}
+	// printf("av[1] = %s\n", av[1]);
+	// return 0;
+
+	// if (!check_args(av+1))
+	// {
+	// 	printf("Error\n");
+	// 	return 1;
+	// }
 	if (ac > 2)
 		int_tab = init_int_tab(&(av[1]), ac, &size);
 	else if (ac == 2)
@@ -138,9 +141,9 @@ int	main(int ac, char **av)
 		while (i-- >= 0)
 			ra(&stack_a);
 	}
-	printf("stack A  ");
-print_stack(stack_a);
-	 print_stack(stack_b);
+// 	printf("stack A  ");
+// print_stack(stack_a);
+// 	 print_stack(stack_b);
 
 
 	// Free stacks

@@ -48,8 +48,6 @@ void	cost_to_daron(t_stack **node_b, int size_a, int size_b)
 	int	b_cost;
 	int	total;
 	int pos = 1;
-	// if ((*node_b)->daron->next == NULL)
-	// 	a_cost = 0;
 	if ((*node_b)->daron->index > size_a / 2)
 		a_cost = size_a - (*node_b)->daron->index;
 	else
@@ -64,37 +62,17 @@ void	cost_to_daron(t_stack **node_b, int size_a, int size_b)
 	if (total < 0)
 		pos *= -1;
 	total *= pos;
-	// total = ((total < 0) * -1 * total) + ((total > 0) * 1 * total) ; 
 	(*node_b)->cost = total;
 	(*node_b)->cost_a = a_cost;
 	(*node_b)->cost_b = b_cost;
-
-	// +1 cause we ALWAYS have to perform a PB;
-	//return (total + 1);
 }
 
 int	apply_daron(t_stack **node_b, t_stack **stack_b, t_stack **stack_a, int *size_a, int *size_b)
 {
+	// t_push_swap as last parameter
 	int	i = 0;
 	int j = 0;
 
-	if ((*node_b)->daron_index == -1)
-		pa(stack_a, stack_b);
-	// else if ((*node_b)->daron && (*node_b)->daron->next == NULL)
-	// {
-	// 	rra(stack_a);
-
-	// 	while (j++ < (*node_b)->cost_b)
-	// 	{
-	// 		if ((*node_b)->index > *size_b / 2)
-	// 			rrb(stack_b);
-	// 		else
-	// 			rb(stack_b);
-	// 	}
-	// 	pa(stack_a, stack_b);
-	// }
-	else
-	{
 	while (i++ < (*node_b)->cost_a)	
 	{
 		if ((*node_b)->daron->index > *size_a / 2)
@@ -110,7 +88,6 @@ int	apply_daron(t_stack **node_b, t_stack **stack_b, t_stack **stack_a, int *siz
 			rb(stack_b);
 	}
 	pa(stack_a, stack_b);
-	}
 	(*size_b)--;
 	(*size_a)++;
 }
@@ -134,17 +111,6 @@ void	set_and_reset(t_stack **stack)
 		tmp->cost_b = 0;
 		tmp = tmp->next;
 	}
-// 	i = 0;
-// 	tmp = *stack_b;
-// 	while (tmp != NULL)
-// 	{
-// 		tmp->index = i++;
-// 		tmp->cost = 0;
-// 		tmp->daron_index = 0;
-// 		tmp->daron = NULL;
-// 		tmp->cost_a = 0;
-// 		tmp->cost_b = 0;
-// 		tmp = tmp->next;
-// 	}
+
 }
 
