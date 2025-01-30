@@ -14,12 +14,12 @@
 
 void	find_daron(t_stack **node_b, t_stack *stack_a)
 {
+	int		i; 
     t_stack *daron1;
     t_stack *daron2;
-	int	i = 0;
-	int daron_index = -1;
 	
     // Loop through stack A and compare to node B
+	i = 0;
     daron1 = NULL;
     while (stack_a != NULL)
     { 
@@ -36,10 +36,7 @@ void	find_daron(t_stack **node_b, t_stack *stack_a)
 		(*node_b)->daron = daron1;
 		(*node_b)->daron_index = (*node_b)->daron->index;
 	}
-	
 	// SHOULD RETURN -1 IF NO DARON FOUND
-	// PA + RA
-	// return (daron1);
 }
 
 void	cost_to_daron(t_stack **node_b, int size_a, int size_b)
@@ -47,7 +44,9 @@ void	cost_to_daron(t_stack **node_b, int size_a, int size_b)
 	int a_cost;
 	int	b_cost;
 	int	total;
-	int pos = 1;
+	int	pos;
+	
+	pos = 1;
 	if ((*node_b)->daron->index > size_a / 2)
 		a_cost = size_a - (*node_b)->daron->index;
 	else
@@ -67,38 +66,38 @@ void	cost_to_daron(t_stack **node_b, int size_a, int size_b)
 	(*node_b)->cost_b = b_cost;
 }
 
-int	apply_daron(t_stack **node_b, t_stack **stack_b, t_stack **stack_a, int *size_a, int *size_b)
+int apply_daron(t_stack **node_b, t_stack **stack_b, t_stack **stack_a, t_push_swap *push_swap)
 {
-	// t_push_swap as last parameter
-	int	i = 0;
-	int j = 0;
+    int i;
+    int j;
 
-	while (i++ < (*node_b)->cost_a)	
-	{
-		if ((*node_b)->daron->index > *size_a / 2)
-			rra(stack_a);
-		else
-			ra(stack_a);
-	}
-	while (j++ < (*node_b)->cost_b)
-	{
-		if ((*node_b)->index > *size_b / 2)
-			rrb(stack_b);
-		else
-			rb(stack_b);
-	}
-	pa(stack_a, stack_b);
-	(*size_b)--;
-	(*size_a)++;
+	i = 0;
+	j = 0;
+    while (i++ < (*node_b)->cost_a)	
+    {
+        if ((*node_b)->daron->index > push_swap->size_a / 2)
+            rra(stack_a);
+        else
+            ra(stack_a);
+    }
+    while (j++ < (*node_b)->cost_b)
+    {
+        if ((*node_b)->index > push_swap->size_b / 2)
+            rrb(stack_b);
+        else
+            rb(stack_b);
+    }
+    pa(stack_a, stack_b);
+    push_swap->size_b--;
+    push_swap->size_a++;
 }
 
 void	set_and_reset(t_stack **stack)
 {
 	// HAS TO BE CALLED AT EACH PUSH
+	int		i;
 	t_stack	*tmp;
-	int	i;
 
-//	tmp = NULL;
 	i = 0;
 	tmp = *stack;
 	while (tmp != NULL)
@@ -111,6 +110,5 @@ void	set_and_reset(t_stack **stack)
 		tmp->cost_b = 0;
 		tmp = tmp->next;
 	}
-
 }
 

@@ -23,9 +23,9 @@ void ft_swap(int *a, int *b)
 
 int	*init_int_tab(char **char_tab, int ac, int *sz)
 {
-	int i;
-	int size;
-	int *int_tab;
+	int	i;
+	int	size;
+	int	*int_tab;
 
 	i = 0;	
 	size = 0;
@@ -40,7 +40,6 @@ int	*init_int_tab(char **char_tab, int ac, int *sz)
 	}
 	if (ac == 2)
 	{
-		//i = 0;
 		while (char_tab[i])
 			free(char_tab[i--]);
 		free(char_tab);
@@ -53,13 +52,13 @@ void	sort_int_tab(int *tab, int size)
 {
 	int i;
 
-	i= 0;
+	i = 0;
 	while (i < size - 1)
 	{
 		if (tab[i] > tab[i + 1])
 		{
 			ft_swap(&tab[i], &tab[i + 1]);
-				i = 0;
+			i = 0;
 		}
 		i++;
 		if (tab[0] > tab[1])
@@ -69,12 +68,12 @@ void	sort_int_tab(int *tab, int size)
 
 int	get_mediane(t_stack *lst)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 	size_t	size;
 	size_t	i;
-	int	*tab;
-	int mediane;
-	int test;
+	int		test;
+	int		*tab;
+	int		mediane;
 
 	i = 0;
 	tmp = lst;
@@ -84,7 +83,6 @@ int	get_mediane(t_stack *lst)
 	{
 		tab[i++] = tmp->value;
 		tmp = tmp->next;
-		//i++;
 	}
 	sort_int_tab(tab, size);
 	mediane = tab[(size / 4) *2];

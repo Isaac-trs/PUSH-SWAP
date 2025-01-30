@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:30:27 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/29 22:01:59 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/29 22:44:43 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_push_swap
 	t_stack *stack_a;
 	t_stack *stack_b;
 	int		*int_tab;
-	int		size_tab;
 	int		size_a;
 	int		size_b;
 		
@@ -57,14 +56,12 @@ t_stack	*ft_init_stack(int *tab, int size);
 void	free_stack(t_stack **stack);
 void	print_stack(const t_stack *stack);
 void	cost_and_apply(t_push_swap **push_swap, t_stack **sb, t_stack **sa);
-//void	cost_and_apply(t_stack **sb, t_stack **sa, t_push_swap **push_swap);
 
 // daron.c
 void	find_daron(t_stack **node_b, t_stack *stack_a);
 void	set_and_reset(t_stack **stack);
 void	cost_to_daron(t_stack **node_b, int size_a, int size_b);
-int		apply_daron(t_stack **node_b, t_stack **stack_b, t_stack  **stack_a, int *size_a, int *size_b);
-//int	apply_daron(t_stack **node_b, t_stack **stack_b, t_stack **stack_a, t_push_swap **push_swap);
+int		apply_daron(t_stack **node_b, t_stack **stack_b, t_stack **stack_a, t_push_swap *push_swap);
 
 
 // tab.c

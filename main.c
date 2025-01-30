@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 07:54:58 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/29 22:02:13 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/29 22:56:42by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,36 @@ int main(int ac, char **av)
     t_push_swap	*push_swap = malloc(sizeof(t_push_swap));
     t_stack		*ptr = NULL;
 	int			i;
-	char **args;  
-//	tests	
+	char **args;
+	if (ac == 1)
+		return (printf("Not enough ARGS\n"));
 	if (ac > 2 && check_args(&av[1]))
-	{
-		push_swap->int_tab = init_int_tab(&(av[1]), ac, &push_swap->size_a);
-		push_swap->size_tab = ac - 1;
-	}
+		push_swap->int_tab = init_int_tab(&av[1], ac, &push_swap->size_a);
 	else if (ac == 2)
 	{
-		if (check_args(args))
-			push_swap->int_tab = init_int_tab(ft_split(av[1], ' '), ac, &push_swap->size_a);
-		else
-			write (1, "Error !", 7);
-	}		
-	if (!ft_is_uniq(push_swap->int_tab, push_swap->size_a) || ft_is_sorted(push_swap->int_tab, push_swap->size_a))
-	{
-		write(1, "Error !", 7);
-		free(push_swap->int_tab);
+		args = ft_split(av[1], ' ');
+		if (!check_args(args))
+			return (printf("at check_args WRONG\n"));
+		push_swap->int_tab = init_int_tab(args, ac, &push_swap->size_a);
 	}
+	print_tab(push_swap->int_tab, push_swap->size_a);
+	printf("%i\n", push_swap->size_a);
+	if (push_swap->size_a == 1)
+		return (printf(" only one element WRONG\n"));
+	if (ft_is_sorted(push_swap->int_tab, push_swap->size_a))
+		return (printf("array is sorted"));
+	if (!ft_is_uniq(push_swap->int_tab, push_swap->size_a))
+		return (printf("array is no uniq"));
+	print_tab(push_swap->int_tab, push_swap->size_a);
+
+		
+
 	
-//	else
-//		return 0;
+	
+}
+//	tests
 
-
+/*
 
 
 
@@ -85,4 +91,4 @@ int main(int ac, char **av)
 	free_stack(&push_swap->stack_b);
 	free(push_swap);
 }
-
+*/

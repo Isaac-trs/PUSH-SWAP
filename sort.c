@@ -16,7 +16,6 @@ void sort_2(t_stack **node_a)
 {
     if (*node_a == NULL || (*node_a)->next == NULL)
         return;
-
     if ((*node_a)->value > (*node_a)->next->value)
         sa(node_a);
 }

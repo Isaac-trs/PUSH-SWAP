@@ -6,7 +6,7 @@
 #    By: istripol <istripol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/20 19:47:13 by istripol          #+#    #+#              #
-#    Updated: 2025/01/29 17:44:51 by istripol         ###   ########.fr        #
+#    Updated: 2025/01/30 01:21:33 by istripol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ OBJS = $(SRCS:%.c=$(OBJECT_DIR)/%.o)
 
 .PHONY:	all, re, clean, fclean
 
-all: $(OBJECT_DIR) $(OBJS)
+all: $(NAME)
+$(NAME): $(OBJECT_DIR) $(OBJS)
 	make -C ./libft
 	gcc -g3 $(OBJS) libft/libft.a -o $(NAME)
 

@@ -79,7 +79,7 @@ void	cost_and_apply(t_push_swap **push_swap, t_stack **sb, t_stack **sa)
 		}
 		tmp = tmp->next;
 	}
-	apply_daron(&to_apply, sb, sa, &(*push_swap)->size_a, &(*push_swap)->size_b);
+	apply_daron(&to_apply, sb, sa, *push_swap);
 	set_and_reset(sa);
 	set_and_reset(sb);
 }
