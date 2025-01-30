@@ -45,6 +45,8 @@
 #include "push_swap.h"
 
 void 	free_all(t_push_swap **push_swap);
+int		start_push_swap(t_push_swap **push_swap);
+int		checks(t_push_swap **push_swap,int ac, char **av);
 
 int main(int ac, char **av)
 {
@@ -89,12 +91,14 @@ int main(int ac, char **av)
 			free(push_swap);
 			return 0;
 		}
+	
+	// THOSE FREE ARE FOR TEST ONLY 
 	free(push_swap->int_tab);
 	free(push_swap);
 	// Willl make return 0 if checks are not passed then free push_swap
 }
 
-void	start_push_swap(t_push_swap **push_swap)
+int	start_push_swap(t_push_swap **push_swap)
 {
 	;	
 }
@@ -152,6 +156,7 @@ void 	free_all(t_push_swap **push_swap)
 
 	free((*push_swap)->int_tab);
 	free((*push_swap)->stack_a);
-	free((*push_swap)->stack_b);
+	if ((*push_swap)->stack_b != NULL)
+		free((*push_swap)->stack_b);
 	free(push_swap);
 }
