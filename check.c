@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 09:56:42 by rocket            #+#    #+#             */
-/*   Updated: 2025/01/30 01:32:28 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/30 01:50:44 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,14 @@ int 	check_args(char **tab)
 	size_t index;
 	
 	index = 0;
+	long res;
+	
 	while (tab[index])
 	{
 		if (!ft_is_number(tab[index]))
 			return (0);
-		if (ft_atol(tab[index]) > INT_MAX)
+		res = ft_atol(tab[index]);
+		if (res > INT_MAX)
 			return (0);
 		index++;
 	}

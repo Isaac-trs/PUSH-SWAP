@@ -40,7 +40,7 @@ int	*init_int_tab(char **char_tab, int ac, int *sz)
 	}
 	if (ac == 2)
 	{
-		while (char_tab[i])
+		while (i >= 0)
 			free(char_tab[i--]);
 		free(char_tab);
 	}
