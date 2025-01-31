@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tab.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 12:19:18 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/16 04:22:51istripol         ###   ########.fr       */
+/*   Updated: 2025/01/31 23:03:15 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_swap(int *a, int *b)
+void	ft_swap(int *a, int *b)
 {
-	int tmp;
+	int	tmp;
 
 	tmp = *b;
 	*b = *a;
@@ -27,11 +27,12 @@ int	*init_int_tab(char **char_tab, int ac, int *sz)
 	int	size;
 	int	*int_tab;
 
-	i = 0;	
+	i = 0;
 	size = 0;
 	while (char_tab[size])
 		size++;
-	if ((int_tab = malloc(sizeof(int) * size)) == NULL)
+	int_tab = malloc(sizeof(int) * size);
+	if (!int_tab)
 		return (MALLOC_ERROR);
 	while (char_tab[i])
 	{
@@ -39,19 +40,14 @@ int	*init_int_tab(char **char_tab, int ac, int *sz)
 		i++;
 	}
 	if (ac == 2)
-	{
-		//free_split(char_tab, i);
-		while (i >= 0)
-			free(char_tab[i--]);
-		free(char_tab);
-	}
+		free_split(char_tab, i);
 	*sz = size;
 	return (int_tab);
 }
 
 void	sort_int_tab(int *tab, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size - 1)
@@ -72,7 +68,6 @@ int	get_mediane(t_stack *lst)
 	t_stack	*tmp;
 	size_t	size;
 	size_t	i;
-	int		test;
 	int		*tab;
 	int		mediane;
 
@@ -86,22 +81,9 @@ int	get_mediane(t_stack *lst)
 		tmp = tmp->next;
 	}
 	sort_int_tab(tab, size);
-	mediane = tab[(size / 4) *2];
+	mediane = tab[(size / 4) * 2];
 	if (size == 4)
 		mediane = tab[1];
 	free(tab);
 	return (mediane);
-}
-
-void	print_tab(const int *tab, size_t size)
-{
-	int i = 0;
-
-	printf("[");
-	while ( i < size)
-	{
-		printf(" %i,", tab[i]);
-		i++;
-	}
-	printf("]\n");
 }

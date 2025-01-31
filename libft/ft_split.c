@@ -43,7 +43,7 @@ static unsigned int	count_words(char const *str, char sep)
 	return (cpt);
 }
 
-char	**free_split(char **split, int index)
+char	**free_split(char **split, ssize_t index)
 {
 	while (--index >= 0)
 		free(split[index]);

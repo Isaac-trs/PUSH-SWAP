@@ -16,11 +16,9 @@ static void	reverse_rotate(t_stack **node)
 {
 	t_stack	*first;
 	t_stack	*last;
-	t_stack	*tmp;
 
 	if (*node == NULL || (*node)->next == NULL)
-			return;
-			
+		return ;
 	first = *node;
 	while (first->next->next)
 		first = first->next;
@@ -46,5 +44,5 @@ void	rrr(t_stack **node_a, t_stack **node_b)
 {
 	reverse_rotate(node_a);
 	reverse_rotate(node_b);
-	write(1, "rrr\n",  4);
+	write(1, "rrr\n", 4);
 }

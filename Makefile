@@ -18,19 +18,21 @@ NAME = push_swap
 
 OBJECT_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJECT_DIR)/%.o)
-
+FLAGS = -Wall -Werror -Wextra
+DEBUG = $(debug.c=$(OBJECT_DIR)/%.o)
 # HEADERS = ./
 
-.PHONY:	all, re, clean, fclean
+.PHONY:	all, re, clean, fclean, debug
 
 all: $(NAME)
 $(NAME): $(OBJECT_DIR) $(OBJS)
 	make -C ./libft
-	cc $(OBJS) libft/libft.a -o $(NAME)
+	cc $(OBJS) libft/libft.a -o $(NAME) $(FLAGS)
 	
-debug: 
+debug:$(OBJECT_DIR) $(OBJS) 
 	make -C ./libft
-	cc -g3 $(OBJS) libft/libft.a -o $(NAME) -Wall -Werror -Wextra
+	cc -g3 -c debug.c -o $(OBJECT_DIR)/debug.o $(FLAGS)
+	cc -g3 $(OBJS) $(DEBUG) libft/libft.a -o $(NAME) $(FLAGS) 
 
 re: fclean all
 
@@ -40,13 +42,13 @@ clean:
 
 fclean: clean
 	make fclean -C libft/
+	rm $(NAME)
 
 $(OBJECT_DIR) :
 	mkdir -p $(OBJECT_DIR) 
 	
-
 $(OBJS): $(OBJECT_DIR)/%.o : %.c
-	gcc -g3 -c $< -o $@ 
+	cc -c $< -o $@ $(FLAGS) 
 
 # gcc -c $(SRCS:%.c) -o $(OBJS:%.o) 
 

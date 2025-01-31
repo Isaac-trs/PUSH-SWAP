@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 01:56:57 by istripol          #+#    #+#             */
-/*   Updated: 2024/10/03 18:41:48y istripol         ###   ########.fr       */
+/*   Updated: 2025/01/31 22:53:18 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void	swap(t_stack **node)
 {
-	t_stack *tmp;
-	if (*node == NULL || (*node)->next == NULL)
-		return;
+	t_stack	*tmp;
 
+	if (*node == NULL || (*node)->next == NULL)
+		return ;
 	tmp = (*node)->next;
 	(*node)->next = tmp->next;
 	tmp->next = *node;

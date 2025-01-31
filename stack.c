@@ -27,31 +27,31 @@ int	lstsize(t_stack *lst)
 	return (cpt);
 }
 
-void    lstclear(t_stack **lst)
+void	lstclear(t_stack **lst)
 {
-    t_stack	*tmp;
-    t_stack	*buf;
+	t_stack	*tmp;
+	t_stack	*buf;
 
-    tmp = *lst;
-    while (tmp)
-    {
-        buf = tmp;
-        tmp = tmp->next;
-        free(buf);
-    }
-    *lst = (NULL);
+	tmp = *lst;
+	while (tmp)
+	{
+		buf = tmp;
+		tmp = tmp->next;
+		free(buf);
+	}
+	*lst = (NULL);
 }
 
-t_stack *lstlast(t_stack *lst)
+t_stack	*lstlast(t_stack *lst)
 {
-    t_stack *tmp;
+	t_stack	*tmp;
 
-    if (!lst)
-        return (NULL);
-    tmp = lst;
-    while (tmp->next)
-        tmp = tmp->next;
-    return (tmp);
+	if (!lst)
+		return (NULL);
+	tmp = lst;
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp);
 }
 
 void	lstadd_back(t_stack **lst, t_stack *new)
@@ -71,12 +71,5 @@ t_stack	*lstnew(int value)
 		return (MALLOC_ERROR);
 	ft_memset(new, 0, sizeof(t_stack));
 	new->value = value;
-	// new->cost = 0;
-	// new->cost = 0;
-	// new->cost_b = 0;
-	// new->index = 0;
-	// new->daron_index = 0;
-	// new->daron = NULL;
-	// new->next = (NULL);
 	return (new);
 }
