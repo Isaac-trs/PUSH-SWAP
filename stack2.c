@@ -39,7 +39,7 @@ t_stack	*ft_init_stack(int *tab, int size)
         if (!buf)
         {
             free_stack(&ret);
-            return (MALLOC_ERROR);
+            return (NULL);
         }
 		lstadd_back(&ret, buf);
 		i++;
@@ -47,13 +47,14 @@ t_stack	*ft_init_stack(int *tab, int size)
 	return (ret);
 }
 
-void	print_stack(const t_stack *stack)
+void	print_stack(t_stack *stack)
 {
-	while (stack)
+	t_stack *ptr = stack;
+	while (ptr)
 	{
-		printf("%d -> ", stack->value);
-		stack = stack->next;
-		if (!stack)
+		printf("%d -> ", ptr->value);
+		ptr = ptr->next;
+		if (!ptr)
 			printf("null\n");
 	}
 }

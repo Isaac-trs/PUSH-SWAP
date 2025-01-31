@@ -45,7 +45,7 @@
 #include "push_swap.h"
 
 void 	free_all(t_push_swap **push_swap);
-int		start_push_swap(t_push_swap *push_swap);
+void		start_push_swap(t_push_swap **ps);
 
 int		first_checks(t_push_swap *push_swap,int ac, char **av)
 {
@@ -85,9 +85,11 @@ int		second_checks(t_push_swap *push_swap)
 
 int main(int ac, char **av)
 {
-	t_push_swap	ps;
+	t_push_swap	ps = {0};
+	
    // t_push_swap *push_swap = malloc(sizeof(t_push_swap));
     t_push_swap *push_swap = &ps;
+//	push_swap->size_a, push_swap->size_b = 0;
     int i;
     char **args;
 
@@ -100,32 +102,43 @@ int main(int ac, char **av)
 		printf("Error\n");
 		exit(0);
 	}
+    push_swap->stack_a = ft_init_stack(push_swap->int_tab, push_swap->size_a);
+	//set_and_reset(&push_swap->stack_a);
+	// if (push_swap->stack_b == NULL)
+	// {
+	// 	printf("wAYO WTF??\n");
+	// 	exit(0);
+	// }
+	
 	if (push_swap->size_a == 2)
-		sort2(&push_swap->stack_a);
+		sort_2(&push_swap->stack_a);
 	else if(push_swap->size_a == 3)
-		sort3(&push_swap->stack_a);
+		sort_3(&push_swap->stack_a);
 	else
-		start_push_swap(push_swap);
+		start_push_swap(&push_swap);
 
 	// THOSE FREE ARE FOR TEST ONLY 
 	free(push_swap->int_tab);
-	write(1, "OK MEK\n", 6);
+	//write(1, "OK MEK\n", 6);
 }
 
-int	start_push_swap(t_push_swap *push_swap)
+void	start_push_swap(t_push_swap **ps)
 {
 	t_stack *ptr;
+	t_push_swap *push_swap = *ps;
 	int		i;
 
-    push_swap->stack_a = ft_init_stack(push_swap->int_tab, push_swap->size_a);
     push_and_sort(&push_swap, &push_swap->stack_a, &push_swap->stack_b);
+	//printf("ICI\n");
+	//print_stack(push_swap->stack_a);
+	//print_stack(push_swap->stack_b);
 
 	// ACTUAL PS
     while (push_swap->size_b > 0)
         cost_and_apply(&push_swap, &push_swap->stack_b, &push_swap->stack_a);
 	i = 0;
 	ptr = push_swap->stack_a;
-    while (ptr->value < ptr->next->value)
+    while (ptr->next && ptr->value < ptr->next->value)
 	{
 		i++;
 		ptr = ptr->next;
@@ -142,17 +155,20 @@ int	start_push_swap(t_push_swap *push_swap)
 	}
 
     // ONLY TESTS
-    print_stack(push_swap->stack_a);
-    printf("Size A stack: %i\n", push_swap->size_a);
-    write(1, "\n", 1);
-    printf("Size B stack: %i\n", push_swap->size_b);
-    print_stack(push_swap->stack_b);
+//    print_stack(push_swap->stack_a);
+//    printf("Size A stack: %i\n", push_swap->size_a);
+//    write(1, "\n", 1);
+//    printf("Size B stack: %i\n", push_swap->size_b);
+//    print_stack(push_swap->stack_b);
 
-	//free
-	free(push_swap->int_tab);
+	//printf("LABA\n");
+	//print_stack(push_swap->stack_a);
+	//print_stack(push_swap->stack_b);
+
+//	free(push_swap->int_tab);
 	free_stack(&push_swap->stack_a);
-	free_stack(&push_swap->stack_b);
-	free(push_swap);
+	//free_stack(&push_swap->stack_b);
+//	free(push_swap);
 }
 
 void 	free_all(t_push_swap **push_swap)

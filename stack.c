@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_functions.c                                    :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 07:00:21 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/23 14:03:22 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/31 20:23:28 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,14 @@ t_stack	*lstnew(int value)
 	new = malloc(sizeof(t_stack));
 	if (!new)
 		return (MALLOC_ERROR);
+	ft_memset(new, 0, sizeof(t_stack));
 	new->value = value;
-	new->next = (NULL);
+	// new->cost = 0;
+	// new->cost = 0;
+	// new->cost_b = 0;
+	// new->index = 0;
+	// new->daron_index = 0;
+	// new->daron = NULL;
+	// new->next = (NULL);
 	return (new);
 }

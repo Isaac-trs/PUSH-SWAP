@@ -41,9 +41,9 @@ void	find_daron(t_stack **node_b, t_stack *stack_a)
 
 void	cost_to_daron(t_stack **node_b, int size_a, int size_b)
 {
-	int a_cost;
-	int	b_cost;
-	int	total;
+	int a_cost = 0;
+	int	b_cost = 0;
+	int	total = 0;
 	int	pos;
 	
 	pos = 1;
@@ -94,7 +94,7 @@ int apply_daron(t_stack **node_b, t_stack **stack_b, t_stack **stack_a, t_push_s
 
 void	set_and_reset(t_stack **stack)
 {
-	// HAS TO BE CALLED AT EACH PUSH
+	// HAS TO BE CALLED AT EACH PUSH TO A
 	int		i;
 	t_stack	*tmp;
 
