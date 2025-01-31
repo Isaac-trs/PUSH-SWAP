@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 07:26:47 by istripol          #+#    #+#             */
-/*   Updated: 2024/01/19 21:36:19 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/30 23:51:23 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int		ft_tolower(int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *nptr);
 
+
+char	**free_split(char **split, int index);
 char	*ft_itoa(int n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);

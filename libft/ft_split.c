@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 10:27:31 by istripol          #+#    #+#             */
-/*   Updated: 2024/01/19 21:41:12 by istripol         ###   ########.fr       */
+/*   Updated: 2025/01/30 23:52:08 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static unsigned int	count_words(char const *str, char sep)
 	return (cpt);
 }
 
-static char	**free_split(char **split, int index)
+char	**free_split(char **split, int index)
 {
 	while (--index >= 0)
 		free(split[index]);
