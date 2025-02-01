@@ -23,7 +23,7 @@ int	first_checks(t_push_swap *push_swap, int ac, char **av)
 	if (ac > 2)
 	{
 		if (!check_args(&av[1]))
-			return (printf("Not passing check_args"));
+			return (0);
 		push_swap->int_tab = init_int_tab(&av[1], ac, &push_swap->size_a);
 	}
 	else if (ac == 2)
@@ -56,15 +56,14 @@ int	second_checks(t_push_swap *push_swap)
 
 int	main(int ac, char **av)
 {
-	t_push_swap	ps = {0};
+	t_push_swap	ps;
 	t_push_swap	*push_swap;
 
 	push_swap = &ps;
-	if (ac < 2)
-		return (printf("No ARGS !\n"));
-	if (!first_checks(push_swap, ac, av) || !second_checks(push_swap))
+	ft_memset(push_swap, 0, sizeof(t_push_swap));
+	if (ac < 2 || !first_checks(push_swap, ac, av) || !second_checks(push_swap))
 	{
-		printf("Error\n");
+		write(2, "Error\n", 5);
 		exit(0);
 	}
 	push_swap->stack_a = ft_init_stack(push_swap->int_tab, \
@@ -96,15 +95,11 @@ void	start_push_swap(t_push_swap **ps)
 		ptr = ptr->next;
 	}
 	if (i > push_swap->size_a / 2)
-	{
 		while (ptr->next && ptr->next->value != push_swap->stack_a->value)
 			rra(&push_swap->stack_a);
-	}
 	else
-	{
 		while (i-- >= 0)
 			ra(&push_swap->stack_a);
-	}
 	free_stack(&push_swap->stack_a);
 }
 

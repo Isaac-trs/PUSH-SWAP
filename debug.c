@@ -14,14 +14,14 @@
 
 void	print_node(t_stack **node)
 {
-	printf("---------------------------------\n");
-	printf("node %i\n", (*node)->index);
-	printf("node->value = %i\n", (*node)->value);
-	printf("node->cost = %i\n", (*node)->cost);
-	printf("node->daron = %p\n", (*node)->daron);
-	printf("node->daron->value = %i\n", (*node)->daron->value);
-	printf("node->daron->index = %i\n", (*node)->daron->index);
-	printf("-------------------\n");
+	ft_printf("---------------------------------\n");
+	ft_printf("node %i\n", (*node)->index);
+	ft_printf("node->value = %i\n", (*node)->value);
+	ft_printf("node->cost = %i\n", (*node)->cost);
+	ft_printf("node->daron = %p\n", (*node)->daron);
+	ft_printf("node->daron->value = %i\n", (*node)->daron->value);
+	ft_printf("node->daron->index = %i\n", (*node)->daron->index);
+	ft_printf("-------------------\n");
 }
 
 void	print_stack(t_stack *stack)
@@ -31,10 +31,10 @@ void	print_stack(t_stack *stack)
 	ptr = stack;
 	while (ptr)
 	{
-		printf("%d -> ", ptr->value);
+		ft_printf("%d -> ", ptr->value);
 		ptr = ptr->next;
 		if (!ptr)
-			printf("null\n");
+			ft_printf("null\n");
 	}
 }
 
@@ -43,11 +43,11 @@ void	print_tab(const int *tab, size_t size)
 	size_t	i;
 
 	i = 0;
-	printf("[");
+	ft_printf("[");
 	while (i < size)
 	{
-		printf(" %i,", tab[i]);
+		ft_printf(" %i,", tab[i]);
 		i++;
 	}
-	printf("]\n");
+	ft_printf("]\n");
 }
