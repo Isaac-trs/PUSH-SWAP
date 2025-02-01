@@ -16,7 +16,7 @@ SRCS = mov1.c mov2.c mov3.c mov4.c \
 
 NAME = push_swap
 
-LIBFT = PRINTF/
+LIBFT = printf/
 LIBFTDIR = $(LIBFT)/libftprintf.a
 OBJECT_DIR = objs
 OBJS = $(SRCS:%.c=$(OBJECT_DIR)/%.o)
@@ -43,7 +43,7 @@ clean:
 
 fclean: clean
 	make fclean -C ./$(LIBFT)
-	rm $(NAME)
+	rm -rf $(NAME)
 
 
 $(OBJECT_DIR) :

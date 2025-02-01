@@ -69,9 +69,9 @@ int	main(int ac, char **av)
 	push_swap->stack_a = ft_init_stack(push_swap->int_tab, \
 										push_swap->size_a);
 	if (push_swap->size_a == 2)
-		sort_2(&push_swap->stack_a);
+		(sort_2(&push_swap->stack_a), free_stack(&push_swap->stack_a));
 	else if (push_swap->size_a == 3)
-		sort_3(&push_swap->stack_a);
+		(sort_3(&push_swap->stack_a), free_stack(&push_swap->stack_a));
 	else
 		start_push_swap(&push_swap);
 	free(push_swap->int_tab);

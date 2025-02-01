@@ -96,7 +96,7 @@ int	check_args(char **tab)
 	index = 0;
 	while (tab[index])
 	{
-		if (!ft_is_number(tab[index]))
+		if (!ft_is_number(tab[index]) || !tab[index][0])
 			return (0);
 		res = ft_atol(tab[index]);
 		if (res > INT_MAX)
