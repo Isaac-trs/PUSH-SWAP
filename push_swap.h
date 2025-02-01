@@ -6,13 +6,13 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:30:27 by istripol          #+#    #+#             */
-/*   Updated: 2025/01/31 01:33:27 by istripol         ###   ########.fr       */
+/*   Updated: 2025/02/01 03:25:23 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "./PRINTF/ft_printf.h"
+# include "./printf/ft_printf.h"
 # include <limits.h>
 
 # ifndef MALLOC_ERROR
