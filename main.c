@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 07:54:58 by istripol          #+#    #+#             */
-/*   Updated: 2025/02/01 00:11:16 by istripol         ###   ########.fr       */
+/*   Updated: 2025/02/02 19:04:25 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ int	main(int ac, char **av)
 
 	push_swap = &ps;
 	ft_memset(push_swap, 0, sizeof(t_push_swap));
-	if (ac < 2 || !first_checks(push_swap, ac, av) || !second_checks(push_swap))
+	if (ac < 2)
+		exit(0);
+	if (!first_checks(push_swap, ac, av) || !second_checks(push_swap))
 	{
-		write(2, "Error\n", 5);
+		write(2, "Error\n", 6);
 		exit(0);
 	}
 	push_swap->stack_a = ft_init_stack(push_swap->int_tab, \

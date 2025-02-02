@@ -6,7 +6,7 @@
 /*   By: istripol <istripol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 09:56:42 by rocket            #+#    #+#             */
-/*   Updated: 2025/01/30 01:50:44 by istripol         ###   ########.fr       */
+/*   Updated: 2025/02/02 19:18:41 by istripol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,11 @@ int	ft_is_sorted(int *tab, size_t size)
 int	ft_is_number(const char *str)
 {
 	if (*str == '-' || *str == '+')
+	{
 		str++;
+		if (!*str)
+			return (0);
+	}
 	while (*str)
 	{
 		if (!ft_isdigit(*str))
